@@ -1,25 +1,39 @@
 version: "3"
 services:
-  nginx:
-    build:
-      context: .
-      dockerfile: nginx/Dockerfile
-    ports: 
-      - "8080:80"
-    networks:
-      - internal
-    volumes:
-      - ./data/:/var/www/html
-      # - /logs/nginx:/var/log/nginx/
-  php:
-    build:
-      context: .
-      dockerfile: php/Dockerfile
-    #image: php:fpm-alpine
-    networks:
-      - internal
-    volumes:
-      - ./data/:/var/www/html
-      # - /logs/php.log:/var/log/fpm-php.www.log
-networks:
-  internal:
+    nginx:
+        restart: always
+        image: nginx
+        ports:
+            - "8080:80"
+        volumes:
+            - ./src:/src
+            - ./default.conf:/etc/nginx/conf.d/default.conf
+    php:
+        restart: always
+        image: php:fpm
+        volumes:
+            - ./src:/src
+            - ./php.ini:/usr/local/etc/php/php.ini
+    mysql:
+        image: mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: testuser
+            MYSQL_PASSWORD: testpassword
+            MYSQL_DATABASE: mydatabase
+        restart: always
+        volumes:
+            - ./database:/var/lib/mysql
+        ports:
+            - "3306:3306"
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        environment:
+            PMA_HOST: mysql
+            PMA_USER: root
+            PMA_PASSWORD: root
+        ports:
+            - "8081:80"
+        restart: always
+        volumes:
+            - ./php.ini:/usr/local/etc/php/php.ini

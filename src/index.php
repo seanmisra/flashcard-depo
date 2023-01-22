@@ -1,7 +1,16 @@
 <?php
+
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
+
+$user = 'root';
+$pass = 'root';
+$dbhost = 'mysql';
+$database = 'mydatabase';
+
+$conn = new PDO("mysql:host=$dbhost;database=$database", $user, $pass);
+
 ?>
 
 <html>
