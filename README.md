@@ -1,1 +1,5 @@
 # flashcard-depo
+
+To run application, run: `docker-compose start` in the root directory, should start at localhost:8080.
+
+To login to container: `sudo docker exec -it flashcard-depo-php-1 sh`
