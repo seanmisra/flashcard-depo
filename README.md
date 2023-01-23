@@ -6,4 +6,4 @@ To login to container: `sudo docker exec -it flashcard-depo-php-1 sh`
 
 Currently needed to run `docker-php-ext-install pdo_mysql` on container manually.
 
-Site runs locally at: http://127.0.0.1:8080/index.php
+Site runs locally at: http://127.0.0.1:8080/index.php"

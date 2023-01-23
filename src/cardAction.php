@@ -14,12 +14,13 @@
         $flashcardFront = $_POST["flashcard-front"];
         $flashcardBack = $_POST["flashcard-back"];
         $flashcardTags = $_POST["flashcard-tags"];
+        $flashcardUser = $_SESSION["username"];
         $is_private = 'Y';
 
         #echo "INSERT INTO mydatabase.cards (front_desc, back_desc, tags, is_private) VALUES ('test-front', 'test-back', 'test-tag', 'Y')";
         #echo "<br>";
-        $insertSQL = "INSERT INTO mydatabase.cards (front_desc, back_desc, tags, is_private) VALUES ('"
-            . $flashcardFront . "', '" . $flashcardBack . "', '" . $flashcardTags . "', '" . $is_private . "')";
+        $insertSQL = "INSERT INTO mydatabase.cards (front_desc, back_desc, tags, is_private, user) VALUES ('"
+            . $flashcardFront . "', '" . $flashcardBack . "', '" . $flashcardTags . "', '" . $is_private . "', '" . $flashcardUser . "')";
         #echo $sql;
 
         try {
@@ -35,7 +36,7 @@
 
 <div>
     <?php
-        $readQuery = "SELECT * FROM mydatabase.cards";
+        $readQuery = "SELECT * FROM mydatabase.cards where user='" . $_SESSION["username"] . "'";
         $result = null;
         $allCards = [];
         try {

@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -6,6 +7,9 @@ error_reporting(E_ALL);
 ?>
 
 <html>
+    <p><?php echo "WELCOME: " . $_SESSION['username']; ?></p>
+    <a href="logout.php">Logout</a>
+
     <h1>Flashcard Depo</h1>
 
     <h2>Create Card</h2>
