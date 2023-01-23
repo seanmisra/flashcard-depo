@@ -7,7 +7,11 @@ class Card {
     # this only works because the access modifiers are private, the variables are then implied 
     private $tagList = [];
 
-    public function __construct(private int $cardId, private string $cardFront, private string $cardBack, private string $tags) {
+    public function __construct(private int $cardId, 
+        private string $cardFront, 
+        private string $cardBack, 
+        private string $tags, 
+        private string $favoriteInd) {
         $this->tagList = explode(",", $tags);
     }
 
@@ -33,6 +37,10 @@ class Card {
 
     public function getCardId(): int {
         return $this->cardId;
+    }
+
+    public function getFavoriteInd(): string {
+        return $this->favoriteInd;
     }
 
 }

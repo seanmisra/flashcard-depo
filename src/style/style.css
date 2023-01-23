@@ -12,8 +12,31 @@
     cursor: pointer;
 }
 
-.card:hover {
+.card-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-content:hover {
     opacity: .6;
+}
+
+.card-icons {
+    font-size: 14px !important;
+    float: left;
+    width: 100%;
+    justify-content: left;
+    margin-left: 20px;
+}
+
+.card-icon {
+    margin-left: 7px;
+}
+
+.card-icon:hover {
+    color: blue;
 }
 
 .hide-side {

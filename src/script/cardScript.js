@@ -11,3 +11,15 @@ function clickCard(id) {
         hideSide.classList.replace('hide-side', 'show-side');
     }
 }
+
+function clickStar(event, id) {
+    alert(id);
+}
+
+function clickEdit(event, id) {
+    alert(id);
+}
+
+function clickDelete(event, id) {
+    alert(id);
+}
