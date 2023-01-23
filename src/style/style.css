@@ -12,6 +12,10 @@
     cursor: pointer;
 }
 
+.card-back {
+    /* font-size: 15px !important; */
+}
+
 .card-content {
     width: 100%;
     display: flex;
@@ -38,6 +42,10 @@
 
 .card-icon:hover {
     color: blue;
+}
+
+.favorite-card-icon:hover, .favorite-icon-blank:hover {
+    color: darkgoldenrod;
 }
 
 .favorite-card-icon {
