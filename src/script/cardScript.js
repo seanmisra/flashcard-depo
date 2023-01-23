@@ -27,16 +27,16 @@ function submitFavorite(id) {
 
 
 function submitEdit(id) {
-    let favoriteInput = document.getElementById("edit-input-" + id);
-    favoriteInput.value = id;
+    let editInput = document.getElementById("edit-input-" + id);
+    editInput.value = id;
 
     let cardForm = getFormById(id);
     cardForm.submit();
 }
 
 function submitDelete(id) {
-    let favoriteInput = document.getElementById("delete-input-" + id);
-    favoriteInput.value = id;
+    let deleteInput = document.getElementById("delete-input-" + id);
+    deleteInput.value = id;
 
     let cardForm = getFormById(id);
     cardForm.submit();

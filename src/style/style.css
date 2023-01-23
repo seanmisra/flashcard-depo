@@ -40,6 +40,10 @@
     color: blue;
 }
 
+.favorite-card-icon {
+    color: darkgoldenrod;
+}
+
 .hide-side {
     display: none;
     font-size: 24px;
