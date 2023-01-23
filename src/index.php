@@ -11,6 +11,10 @@ error_reporting(E_ALL);
 ?>
 
 <html>
+    <head>
+      <link rel='stylesheet' href='style/style.css'>
+      <script src='script/cardScript.js'></script>
+    </head>
     <p><?php echo "WELCOME: " . $_SESSION['username']; ?></p>
     <a href="logout.php">Logout</a>
 
@@ -33,5 +37,5 @@ error_reporting(E_ALL);
 
         <button>Submit</button>
     </form> 
+  <?php require('cardAction.php') ?>
 </html>
-<?php require('cardAction.php') ?>

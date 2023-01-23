@@ -1,5 +1,6 @@
 <?php 
     require("connection.php");
+    require("./model/Card.php");
 
     $flashcardFront = "";
     $flashcardBack = "";
@@ -42,18 +43,26 @@
         }
 
         while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $allCards[] = $row;
+            $cardId = $row['id'];
+            $cardFront = $row['front_desc'];
+            $cardBack = $row['back_desc'];
+            $tags = $row['tags'];
+            $thisCard = new Card($cardId, $cardFront, $cardBack, $tags);
+            $allCards[] = $thisCard;
         }
         // print_r($allCards);
     ?>
 
     <h2>All Cards</h2>
     <?php foreach($allCards as $card): ?>
-        <h3> <?php echo $card['id']?> </h3>
-        <p>Flashcard Front: <?php echo $card['front_desc']?> </p>
-        <p>Flashcard Front: <?php echo $card['back_desc']?> </p>
-        <p>Flashcard Front: <?php echo $card['tags']?> </p>
-        <br><br>
-
+        <div class="card"
+            id="<?php echo $card->getCardId()?>"
+            onclick="<?php echo 'clickCard(' . $card->getCardId() . ')'?>">
+            
+            
+                <p class="card-front show-side"><?php echo $card->getCardFront()?> </p>
+                <p class="card-back hide-side"><?php echo $card->getCardBack()?> </p>
+                <div class="tags"><?php echo $card->getFormattedTags()?> </div>
+        </div>
     <?php endforeach; ?>
 </div>

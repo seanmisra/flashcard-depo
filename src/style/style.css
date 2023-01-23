@@ -1,0 +1,32 @@
+.card {
+    outline: 1px solid rgb(150, 150, 150);
+    box-shadow: 2px 4px gray;
+    width: 50%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.card:hover {
+    opacity: .6;
+}
+
+.hide-side {
+    display: none;
+    font-size: 24px;
+}
+
+.show-side {
+    display: block;
+    font-size: 24px;
+}
+
+.tags {
+    margin-top: 100px;
+    font-size: 14px;
+}
