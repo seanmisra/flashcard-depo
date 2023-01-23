@@ -8,6 +8,21 @@
     $error = "";
 
    function validateUser($user, $password) {
+        #TODO: INSECURE, revise with encryption
+        $userReadQuery = "SELECT password FROM mydatabase.users WHERE username='" . $user . "'";
+        $existingUser = 1;
+        try {
+            $result = $GLOBALS['conn']->query($userReadQuery);
+            $resultArray = $result->fetch(PDO::FETCH_ASSOC);
+            $dbPassword = reset($resultArray);
+            
+            return $password === $dbPassword;
+        } catch (PDOException $e) {
+            echo "<br>";
+            die($e->getMessage());
+        }
+
+
         if ($user === "test" && $password === "test") {
             return true;
         } else {
@@ -16,6 +31,8 @@
     }
 
     function createUser($user, $password) {
+        #TODO: ideally should be one query/proc 
+
         $userExistsQuery = "SELECT EXISTS(SELECT * FROM mydatabase.users WHERE username='" . $user . "')";
         $existingUser = 1;
         try {
