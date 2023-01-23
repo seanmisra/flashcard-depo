@@ -1,14 +1,9 @@
 <?php 
+    require("connection.php");
+
     $flashcardFront = "";
     $flashcardBack = "";
     $flashcardTags = "";
-
-    $user = 'root';
-    $pass = 'root';
-    $dbhost = 'mysql';
-    $database = 'mydatabase';
-
-    $conn = new PDO("mysql:host=$dbhost;database=$database", $user, $pass);     
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $flashcardFront = $_POST["flashcard-front"];
