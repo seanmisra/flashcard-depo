@@ -16,16 +16,14 @@
         $flashcardTags = $_POST["flashcard-tags"];
         $is_private = 'Y';
 
-
-
         #echo "INSERT INTO mydatabase.cards (front_desc, back_desc, tags, is_private) VALUES ('test-front', 'test-back', 'test-tag', 'Y')";
         #echo "<br>";
-        $sql = "INSERT INTO mydatabase.cards (front_desc, back_desc, tags, is_private) VALUES ('"
+        $insertSQL = "INSERT INTO mydatabase.cards (front_desc, back_desc, tags, is_private) VALUES ('"
             . $flashcardFront . "', '" . $flashcardBack . "', '" . $flashcardTags . "', '" . $is_private . "')";
         #echo $sql;
 
         try {
-            $conn->query($sql);
+            $conn->query($insertSQL);
         } catch (PDOException $e) {
             echo "<br>";
             die($e->getMessage());
@@ -36,8 +34,30 @@
 ?>
 
 <div>
-    <h2>Submitted Values</h2>
-    <p>Flashcard Front: <?php echo $flashcardFront?> </p>
-    <p>Flashcard Back: <?php echo $flashcardBack?> </p>
-    <p>Flashcard Tags: <?php echo $flashcardTags?> </p>
+    <?php
+        $readQuery = "SELECT * FROM mydatabase.cards";
+        $result = null;
+        $allCards = [];
+        try {
+            $result = $conn->query($readQuery);
+        } catch (PDOException $e) {
+            echo "<br>";
+            die($e->getMessage()); 
+        }
+
+        while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $allCards[] = $row;
+        }
+        // print_r($allCards);
+    ?>
+
+    <h2>All Cards</h2>
+    <?php foreach($allCards as $card): ?>
+        <h3> <?php echo $card['id']?> </h3>
+        <p>Flashcard Front: <?php echo $card['front_desc']?> </p>
+        <p>Flashcard Front: <?php echo $card['back_desc']?> </p>
+        <p>Flashcard Front: <?php echo $card['tags']?> </p>
+        <br><br>
+
+    <?php endforeach; ?>
 </div>
