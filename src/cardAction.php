@@ -7,6 +7,13 @@
     $flashcardTags = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // handle action item on specific card
+        $actionItem = $_POST["flashcard-front"];
+
+
+
+
+        // handle insert of new card
         $flashcardFront = $_POST["flashcard-front"];
         $flashcardBack = $_POST["flashcard-back"];
         $flashcardTags = $_POST["flashcard-tags"];
@@ -67,19 +74,20 @@
     <?php foreach($allCards as $card): ?>
         <div class="card"
             id="<?php echo $card->getCardId()?>">
-                <div class="card-icons"> 
-                    <i class="card-icon fa-regular fa-star"
-                    onclick="<?php 'clickStar(' . $card->getCardId() . ')'?>"
-                    ></i>
+                <form class="card-icons" id="<?php echo 'card-icons-' . $card->getCardId() ?>"> 
+                    <input id="<?php echo 'favorite-input-' . $card->getCardId() ?>" hidden>
+                    <i class="card-icon fa-regular fa-star" 
+                        onclick="<?php echo 'submitFavorite(' . $card->getCardId() . ')'?>"> </i>
 
+                    <input id="<?php echo 'edit-input-' . $card->getCardId() ?>"hidden>
                     <i class="card-icon fa-solid fa-pen-to-square"
-                    onclick="<?php 'clickEdit(' . $card->getCardId() . ')'?>"
-                    ></i>
+                        onclick="<?php echo 'submitEdit(' . $card->getCardId() . ')'?>"> </i>
 
+                    <input id="<?php echo 'delete-input-' . $card->getCardId() ?>"hidden>
                     <i class="card-icon fa-solid fa-trash"
-                    onclick="<?php 'clickDelete(' . $card->getCardId() . ')'?>"
-                    ></i>
-                </div>
+                        onclick="<?php echo 'submitDelete(' . $card->getCardId() . ')'?>"> </i>
+
+                </form>
                 <div class="card-content"
                 onclick="<?php echo 'clickCard(' . $card->getCardId() . ')'?>"
                 >

@@ -12,14 +12,32 @@ function clickCard(id) {
     }
 }
 
-function clickStar(event, id) {
-    alert(id);
+function getFormById(id) {
+    let cardForm = document.getElementById("card-icons-" + id);
+    return cardForm;
+} 
+
+function submitFavorite(id) {
+    let favoriteInput = document.getElementById("favorite-input-" + id);
+    favoriteInput.value = id;
+
+    let cardForm = getFormById(id);
+    cardForm.submit();
 }
 
-function clickEdit(event, id) {
-    alert(id);
+
+function submitEdit(id) {
+    let favoriteInput = document.getElementById("edit-input-" + id);
+    favoriteInput.value = id;
+
+    let cardForm = getFormById(id);
+    cardForm.submit();
 }
 
-function clickDelete(event, id) {
-    alert(id);
+function submitDelete(id) {
+    let favoriteInput = document.getElementById("delete-input-" + id);
+    favoriteInput.value = id;
+
+    let cardForm = getFormById(id);
+    cardForm.submit();
 }
