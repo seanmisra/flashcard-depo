@@ -79,28 +79,41 @@
 ?>
 
 <html> 
-   <h1>Login</h1>
+    <head>
+      <link rel='stylesheet' href='style/style.css'>
+    </head>
 
-    <form method='POST'>
-        <input name='username' value='test'>
-        <input name='password' value='test'>
+    <div class="login-wrapper">
+        <h1>Login</h1>
+        <form method='POST'>
+            <label class="login-label" id="username-label" for='username'>Username: </label>
+            <input autocomplete="off" class="login-input" id="username" name='username' value='test'>
+            <br>
+            <label class="login-label" id="password-label" for='username'>Password: </label>
+            <input autocomplete="off"  class="login-input" id="password" name='password' value='test'>
+            <br>
+            <button id="login-button">Login</button>
+        </form> 
+        <div class = "errors" style="color:red">
+            <?php echo $error?>
+        </div>
+
         <br>
-        <button>Login</button>
-    </form> 
-    <div class = "errors" style="color:red">
-        <?php echo $error?>
+        <h3>OR...</h3>
+
+        <h1>Sign Up</h1>
+
+        <form method='POST'>
+            <label class="login-label" id="signup-username-label" for='username'>Username: </label>
+            <input autocomplete="off" class="login-input" id="signup-username" name='username' value=''>
+            <br>
+            <label class="login-label" id="signup-password-label" for='username'>Password: </label>
+            <input autocomplete="off" class="login-input" id="signup-password" name='password' value=''>
+
+            <input hidden name='sign-up' value='true'>
+            <br>
+            <button id="signup-button">Sign Up</button>
+        </form> 
     </div>
-
-    <h3>OR...</h3>
-
-    <h1>Sign Up</h1>
-
-    <form method='POST'>
-        <input name='username' value=''>
-        <input name='password' value=''>
-        <input hidden name='sign-up' value='true'>
-        <br>
-        <button>Login</button>
-    </form> 
 
 </html>

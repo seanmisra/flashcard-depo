@@ -41,3 +41,23 @@ function submitDelete(id) {
     let cardForm = getFormById(id);
     cardForm.submit();
 }
+
+function toggleCreateCard () {
+    console.log('toggleCreateCard');
+    let createForm = document.getElementById("create-card-form");
+    let hide = createForm.className.split(' ').includes('invisible');
+
+    let hideCreateCard = document.getElementById('hide-create-card');
+    let showCreateCard = document.getElementById('show-create-card');
+
+    if (hide) {
+        createForm.classList.replace('invisible', 'visible');
+        hideCreateCard.classList.replace('invisible', 'visible-inline');
+        showCreateCard.classList.replace('visible-inline', 'invisible');
+
+    } else {
+        createForm.classList.replace('visible', 'invisible');
+        hideCreateCard.classList.replace('visible-inline', 'invisible');
+        showCreateCard.classList.replace('invisible', 'visible-inline');
+    }
+}
