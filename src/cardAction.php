@@ -52,9 +52,14 @@
 
         if (isset($card)) {
             $newInd = $card->getFavoriteInd() === 'Y' ? 'N' : 'Y';
+            $starredWord = $newInd === 'Y' ? 'starred' : 'unstarred';
+
             $favoriteUpdateSQL = "UPDATE mydatabase.cards SET favorite_ind='" . $newInd . 
                 "' WHERE id=" . $id;
             $GLOBALS['conn']->query($favoriteUpdateSQL);
+
+
+            echo '<script type="text/javascript">toastr.success("Card is ' . $starredWord . '")</script>';
         }
     }
 
@@ -112,7 +117,9 @@
                 echo "<br>";
                 die($e->getMessage());
             }
-            echo "New record successfully created";
+
+
+            echo '<script type="text/javascript">toastr.success("New record successfully created")</script>';
         }
         getAllCards();
     }

@@ -53,7 +53,7 @@
                 echo "<br>";
                 die($e->getMessage());
             }
-            echo "User successfully created, can now login";
+            echo "<strong>User successfully created, can now login</strong>";
         } else {
             $GLOBALS['error'] = "Username already exists";
         }
@@ -80,7 +80,7 @@
 
 <html> 
     <head>
-      <link rel='stylesheet' href='style/style.css'>
+        <link rel='stylesheet' href='style/style.css'>
     </head>
 
     <div class="login-wrapper">

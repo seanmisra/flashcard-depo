@@ -1,5 +1,5 @@
 <div>
-    <h2>All Cards</h2>
+    <h2 id="all-cards-header">All Cards</h2>
     <?php foreach($allCards as $card): ?>
         <div class="card"
             id="<?php echo $card->getCardId()?>">
@@ -32,7 +32,12 @@
                 >
                     <p class="card-front show-side"><?php echo $card->getCardFront()?> </p>
                     <p class="card-back hide-side"><?php echo $card->getCardBack()?> </p>
-                    <div class="tags"><?php echo $card->getFormattedTags()?> </div>
+                    <div class="tags">
+
+                        <?php foreach($card->getTagList() as $key=>$value): ?>
+                            <span class="card-tag"><?php echo $value ?></span>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
         </div>
     <?php endforeach; ?>
