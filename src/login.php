@@ -84,6 +84,7 @@
     </head>
 
     <div class="login-wrapper">
+        <img width="70" src="resources/pencil.png">
         <h1>Login</h1>
         <form method='POST'>
             <label class="login-label" id="username-label" for='username'>Username: </label>

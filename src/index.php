@@ -53,6 +53,9 @@ error_reporting(E_ALL);
 
         <label class="card-create-label" for="flashcard-tags">Tags (cs): </label>
         <input autocomplete="off" class="card-create-input" name="flashcard-tags" id="flashcard-tags" type='text'></input>
+        <span id="tag-example">
+          (ex: php, php-8, laravel)
+        </span>
         <br><br>
 
         <button id="create-card-button">Submit</button>

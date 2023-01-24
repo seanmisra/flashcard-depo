@@ -167,3 +167,8 @@
     font-size: 18px;
     font-weight: normal;
 }
+
+#tag-example {
+    color: gray;
+    font-size: 13px;
+}

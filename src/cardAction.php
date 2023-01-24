@@ -2,6 +2,10 @@
     require("connection.php");
     require("./model/Card.php");
 
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
+
     $flashcardFront = "";
     $flashcardBack = "";
     $flashcardTags = "";
@@ -28,6 +32,11 @@
             $thisCard = new Card($cardId, $cardFront, $cardBack, $tags, $favoriteInd);
             $GLOBALS['allCards'][] = $thisCard;
         }
+
+        // sort by reverse creation date (i.e. id)
+        usort($GLOBALS['allCards'], function($a, $b) { 
+            return $b->getCardId() <=> $a->getCardId();
+        });
     }
 
     getAllCards();
@@ -69,31 +78,29 @@
         $editUpdate = false;
         $deleteUpdate = false;
 
-
         foreach($_POST as $key=>$value) {
             if (str_contains($key, 'favorite-input')) {
-                if (isset($key[$value])) {
+                if (isset($value) && !empty($value)) {
                     $favoriteUpdate = true;
                     handleFavorite($value);
                 }
             }
             else if (str_contains($key, 'edit-input')) {
-                if (isset($key[$value])) {
+                if (isset($value) && !empty($value)) {
                     $favoriteUpdate = true;
                     handleEdit($value);
                 }
             }
             else if (str_contains($key, 'delete-input')) {
-                if (isset($key[$value])) {
+                if (isset($value) && !empty($value)) {
                     $favoriteUpdate = true;
                     handleDelete($value);
                 }
             }
         }
 
-
         if ($favoriteUpdate === false && $editUpdate === false && $deleteUpdate === false) {
-            // handle insert of new card
+            // handle insert of new card            
             $flashcardFront = $_POST["flashcard-front"];
             $flashcardBack = $_POST["flashcard-back"];
             $flashcardTags = $_POST["flashcard-tags"];
