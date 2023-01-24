@@ -11,6 +11,16 @@
             value="<?php echo $GLOBALS['existingSearchTerm'] ?>"
             id="card-search"></input>
         <i class="fa-solid fa-magnifying-glass"></i>
+
+        <select name="card-dropdown" onchange="submitCardForm()" id="card-dropdown">
+            <option 
+                <?php if ($GLOBALS['existingDropdownValue'] !== "starred") echo "selected='selected'";?>
+                value="all">All</option>
+
+            <option 
+                <?php if ($GLOBALS['existingDropdownValue'] === "starred") echo "selected='selected'";?>
+                value="starred">Starred</option>
+        </select>
     </form>
     <?php foreach($allCards as $card): ?>
         <div class="card"

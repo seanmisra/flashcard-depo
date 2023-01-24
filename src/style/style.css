@@ -175,7 +175,7 @@
 
 
 #card-search-form {
-    width: 30%;
+    width: 50%;
     display: flex;
 }
 
@@ -188,6 +188,11 @@
 #card-search {
     width: 100%;
     display: inline;
+}
+
+#card-dropdown {
+    width: 50%;
+    margin-left: 10px;
 }
 
 .main-container {

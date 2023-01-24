@@ -61,3 +61,9 @@ function toggleCreateCard () {
         showCreateCard.classList.replace('invisible', 'visible-inline');
     }
 }
+
+function submitCardForm() {
+    
+    let cardSearchForm = document.getElementById("card-search-form");
+    cardSearchForm.submit();
+}

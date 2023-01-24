@@ -10,6 +10,7 @@
     $flashcardBack = "";
     $flashcardTags = "";
     $existingSearchTerm = "";
+    $existingDropdownValue = "";
 
     $readQuery = "SELECT * FROM mydatabase.cards where user='" . $_SESSION["username"] . "'";
     $result = null;
@@ -43,23 +44,39 @@
     getAllCards();
 
     function filterCards() {
-        if (isset($_GET['card-search']) && !empty($_GET['card-search'])) {  
+        $cardSearch = isset($_GET['card-search']) && !empty($_GET['card-search']);
+        $starFilter = isset($_GET['card-dropdown']) && ($_GET['card-dropdown']==="starred");
+
+        // echo "Star Filter";
+        // echo "<br>"; 
+        // echo $_GET['card-dropdown'];
+
+        if ($cardSearch) {
+            $filteredCards = [];
             $searchTerm = $GLOBALS['existingSearchTerm'] = $_GET['card-search'];
-            if ($searchTerm) {
-                $filteredCards = [];
-    
-                foreach($GLOBALS['allCards'] as $card) {
-                    foreach($card->getTagList() as $tag) {
-                        if (str_contains(strtolower($tag), strtolower($searchTerm))) {
-                            array_push($filteredCards, $card);
-                            break 1; 
-                        }
+
+            foreach($GLOBALS['allCards'] as $card) {
+                foreach($card->getTagList() as $tag) {
+                    if (str_contains(strtolower($tag), strtolower($searchTerm))) {
+                        array_push($filteredCards, $card);
+                        break 1; 
                     }
                 }
-                $GLOBALS['allCards'] = $filteredCards;
-            } else {
-                getAllCards();
             }
+            $GLOBALS['allCards'] = $filteredCards;
+        } else {
+            getAllCards();
+        }
+
+        if ($starFilter) {
+            $GLOBALS['existingDropdownValue'] = "starred";
+            $dropdownFilteredCards = [];
+            foreach($GLOBALS['allCards'] as $card) {
+                if ($card->getFavoriteInd() === 'Y') {
+                    array_push($dropdownFilteredCards, $card);
+                }
+            }
+            $GLOBALS['allCards'] = $dropdownFilteredCards;
         }
     }
 
