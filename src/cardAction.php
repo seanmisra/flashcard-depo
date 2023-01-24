@@ -16,6 +16,13 @@
     $result = null;
     $allCards = [];
 
+    function sanitize_string(string $str) {
+        return htmlentities(
+            htmlspecialchars($str, ENT_QUOTES),
+        ENT_QUOTES, 'UTF-8'
+        );
+    }
+
     function getAllCards() {
         $GLOBALS['allCards'] = [];
         try {
@@ -154,10 +161,10 @@
 
         if ($favoriteUpdate === false && $editUpdate === false && $deleteUpdate === false) {
             // handle insert of new card            
-            $flashcardFront = $_POST["flashcard-front"];
-            $flashcardBack = $_POST["flashcard-back"];
-            $flashcardTags = $_POST["flashcard-tags"];
-            $flashcardUser = $_SESSION["username"];
+            $flashcardFront = sanitize_string($_POST["flashcard-front"]);
+            $flashcardBack = sanitize_string($_POST["flashcard-back"]);
+            $flashcardTags = sanitize_string($_POST["flashcard-tags"]);
+            $flashcardUser = sanitize_string($_SESSION["username"]);
             $is_private = 'Y';
 
             #echo "INSERT INTO mydatabase.cards (front_desc, back_desc, tags, is_private) VALUES ('test-front', 'test-back', 'test-tag', 'Y')";

@@ -7,7 +7,17 @@
    
     $error = "";
 
-   function validateUser($user, $password) {
+    function sanitize_string(string $str) {
+        return htmlentities(
+        filter_var($str, FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+        ENT_QUOTES, 'UTF-8'
+        );
+    }
+
+    function validateUser($user, $password) {
+        $user = sanitize_string($user);
+        $password = sanitize_string($password);
+
         #TODO: INSECURE, revise with encryption
         $userReadQuery = "SELECT password FROM mydatabase.users WHERE username='" . $user . "'";
         $existingUser = 1;
@@ -31,8 +41,10 @@
     }
 
     function createUser($user, $password) {
-        #TODO: ideally should be one query/proc 
+        $user = sanitize_string($user);
+        $password = sanitize_string($password);
 
+        #TODO: ideally should be one query/proc 
         $userExistsQuery = "SELECT EXISTS(SELECT * FROM mydatabase.users WHERE username='" . $user . "')";
         $existingUser = 1;
         try {
@@ -88,10 +100,10 @@
         <h1>Login</h1>
         <form method='POST'>
             <label class="login-label" id="username-label" for='username'>Username: </label>
-            <input autocomplete="off" class="login-input" id="username" name='username' value='test'>
+            <input minlength="2" maxlength="20" autocomplete="off" class="login-input" id="username" name='username' value='test'>
             <br>
             <label class="login-label" id="password-label" for='username'>Password: </label>
-            <input autocomplete="off"  class="login-input" id="password" name='password' value='test'>
+            <input minlength="2" maxlength="20" autocomplete="off"  class="login-input" id="password" name='password' value='test'>
             <br>
             <button id="login-button">Login</button>
         </form> 
@@ -106,10 +118,10 @@
 
         <form method='POST'>
             <label class="login-label" id="signup-username-label" for='username'>Username: </label>
-            <input autocomplete="off" class="login-input" id="signup-username" name='username' value=''>
+            <input minlength="2" maxlength="20" autocomplete="off" class="login-input" id="signup-username" name='username' value=''>
             <br>
             <label class="login-label" id="signup-password-label" for='username'>Password: </label>
-            <input autocomplete="off" class="login-input" id="signup-password" name='password' value=''>
+            <input minlength="2" maxlength="20" autocomplete="off" class="login-input" id="signup-password" name='password' value=''>
 
             <input hidden name='sign-up' value='true'>
             <br>

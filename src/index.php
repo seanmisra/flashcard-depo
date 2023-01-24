@@ -49,15 +49,15 @@ error_reporting(E_ALL);
 
         <form class="invisible" id="create-card-form" method="post">
             <label class="card-create-label" for="flashcard-front">Front: </label>
-            <textarea class="card-create-input card-create-textarea" name="flashcard-front" id="flashcard-front" type='text'></textarea>
+            <textarea minlegnth="2" maxlength="1000" class="card-create-input card-create-textarea" name="flashcard-front" id="flashcard-front" type='text'></textarea>
             <br><br>
 
             <label class="card-create-label" for="flashcard-back">Back: </label>
-            <textarea class="card-create-input card-create-textarea" name="flashcard-back" id="flashcard-back" type='text'></textarea>
+            <textarea minlength="2" maxlength="1000" class="card-create-input card-create-textarea" name="flashcard-back" id="flashcard-back" type='text'></textarea>
             <br><br>
 
             <label class="card-create-label" for="flashcard-tags">Tags (cs): </label>
-            <input autocomplete="off" class="card-create-input" name="flashcard-tags" id="flashcard-tags" type='text'></input>
+            <input  minlength="2" maxlength="500" autocomplete="off" class="card-create-input" name="flashcard-tags" id="flashcard-tags" type='text'></input>
             <span id="tag-example">
               (ex: php, php-8, laravel)
             </span>
