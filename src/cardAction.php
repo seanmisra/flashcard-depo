@@ -47,10 +47,6 @@
         $cardSearch = isset($_GET['card-search']) && !empty($_GET['card-search']);
         $starFilter = isset($_GET['card-dropdown']) && ($_GET['card-dropdown']==="starred");
 
-        // echo "Star Filter";
-        // echo "<br>"; 
-        // echo $_GET['card-dropdown'];
-
         if ($cardSearch) {
             $filteredCards = [];
             $searchTerm = $GLOBALS['existingSearchTerm'] = $_GET['card-search'];
@@ -81,7 +77,23 @@
     }
 
     function handleDelete($id) {
-        echo "Handle delete not implemented yet!!";
+        $allCards = $GLOBALS['allCards'];
+        $card = null;
+        foreach($allCards as $element) {
+            if ($id == $element->getCardId()) {
+                $card = $element;
+                break;
+            }
+        }
+
+        if (isset($card)) {
+            $deleteSQL = "DELETE from mydatabase.cards where id=" . $id;
+            $GLOBALS['conn']->query($deleteSQL);
+
+            echo '<script type="text/javascript">toastr.success("Card is deleted")</script>';
+        }
+
+        filterCards();
     }
 
     function handleEdit($id) {

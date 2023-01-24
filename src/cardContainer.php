@@ -45,8 +45,8 @@
 
                     <input name="<?php echo 'delete-input-' . $card->getCardId() ?>"
                         id="<?php echo 'delete-input-' . $card->getCardId() ?>"hidden>
-                    <i class="card-icon fa-solid fa-trash"
-                        onclick="<?php echo 'submitDelete(' . $card->getCardId() . ')'?>"> </i>
+                    <i title="double click to delete" class="card-icon fa-solid fa-trash"
+                        ondblclick="<?php echo 'submitDelete(' . $card->getCardId() . ')'?>"> </i>
 
                 </form>
                 <div class="card-content"
