@@ -17,10 +17,7 @@
     $allCards = [];
 
     function sanitize_string(string $str) {
-        return htmlentities(
-            htmlspecialchars($str, ENT_QUOTES),
-        ENT_QUOTES, 'UTF-8'
-        );
+        return htmlentities($str, ENT_QUOTES, 'UTF-8');
     }
 
     function getAllCards() {
