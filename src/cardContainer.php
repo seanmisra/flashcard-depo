@@ -1,5 +1,17 @@
+<?php
+    filterCards();
+?>
+
 <div>
     <h2 id="all-cards-header">All Cards</h2>
+    <form id="card-search-form" method="get"> 
+        <input 
+            autocomplete="off" 
+            name="card-search" 
+            value="<?php echo $GLOBALS['existingSearchTerm'] ?>"
+            id="card-search"></input>
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </form>
     <?php foreach($allCards as $card): ?>
         <div class="card"
             id="<?php echo $card->getCardId()?>">

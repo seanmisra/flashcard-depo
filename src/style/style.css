@@ -172,3 +172,24 @@
     color: gray;
     font-size: 13px;
 }
+
+
+#card-search-form {
+    width: 30%;
+    display: flex;
+}
+
+.fa-magnifying-glass {
+    display: inline !important;
+    margin-left: 10px;
+    color: rgb(85, 85, 85);
+}
+
+#card-search {
+    width: 100%;
+    display: inline;
+}
+
+.main-container {
+    /* display: flex; */
+}

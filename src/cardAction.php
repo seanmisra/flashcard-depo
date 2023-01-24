@@ -9,6 +9,7 @@
     $flashcardFront = "";
     $flashcardBack = "";
     $flashcardTags = "";
+    $existingSearchTerm = "";
 
     $readQuery = "SELECT * FROM mydatabase.cards where user='" . $_SESSION["username"] . "'";
     $result = null;
@@ -41,6 +42,27 @@
 
     getAllCards();
 
+    function filterCards() {
+        if (isset($_GET['card-search']) && !empty($_GET['card-search'])) {  
+            $searchTerm = $GLOBALS['existingSearchTerm'] = $_GET['card-search'];
+            if ($searchTerm) {
+                $filteredCards = [];
+    
+                foreach($GLOBALS['allCards'] as $card) {
+                    foreach($card->getTagList() as $tag) {
+                        if (str_contains(strtolower($tag), strtolower($searchTerm))) {
+                            array_push($filteredCards, $card);
+                            break 1; 
+                        }
+                    }
+                }
+                $GLOBALS['allCards'] = $filteredCards;
+            } else {
+                getAllCards();
+            }
+        }
+    }
+
     function handleDelete($id) {
         echo "Handle delete not implemented yet!!";
     }
@@ -70,6 +92,8 @@
 
             echo '<script type="text/javascript">toastr.success("Card is ' . $starredWord . '")</script>';
         }
+
+        filterCards();
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
